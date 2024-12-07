@@ -3,7 +3,7 @@ import Data.List
 
 primes = 2 : filter isPrime [3, 5 ..] :: [Int]
 
-isPrime n = not $ any ((== 0) . (n `rem`)) $ takeWhile ((<= n) . join (*)) primes
+isPrime n = all (\p -> n `rem` p /= 0) $ takeWhile (\p -> p ^ 2 <= n) primes
 
 factorize :: Int -> [(Int, Int)]
 factorize = go primes
